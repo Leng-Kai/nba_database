@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>NBA Database</title>
+</head>
+
+<body>
+    <h1>Query</h1>
+
+    <form action="/query_result" method="get">
+        <label>Player</label>
+        <input type="text" name="p_name_input" value="Stephen Curry" />
+
+        <label>Team</label>
+        <input type="text" name="t_name_input" value="GSW" /><br>
+
+        <label>Coach</label>
+        <input type="text" name="c_name_input" value="Steve Kerr" /><br>
+
+        <input type="checkbox" name="p_name" />player<br>
+        <input type="checkbox" name="t_name" />team<br>
+        <input type="checkbox" name="c_name" />coach<br>
+        <input type="checkbox" name="height" />height<br>
+        <input type="checkbox" name="weight" />weight<br>
+        <input type="checkbox" name="pos" />pos<br>
+        <input type="checkbox" name="city" />city<br>
+        <input type="checkbox" name="year" />year<br>
+        <input type="checkbox" name="win" />win<br>
+        <input type="checkbox" name="lose" />lose<br>
+
+        <button type="submit">Query</button>
+    </form>
+    <button onclick="select_all()">Select All</button>
+    <form action="/" method="post">
+        <button type="submit">Back</button>
+    </form>
+
+</body>
+
+<script>
+    function select_all() {
+        checkboxes = document.getElementsByTagName("input");
+        for (var i = 3, n = checkboxes.length; i < n; i++) {
+            console.log(checkboxes[i].name)
+            checkboxes[i].checked = 1;
+        }
+    }
+</script>
+
+</html>

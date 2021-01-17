@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>NBA Database</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Query Result</h1>
+    <table id="result_table">
+        <tr id="result_attribute">
+        </tr>
+    </table>
+    <form action="/" method="post">
+        <button type="submit">Back</button>
+    </form>
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        param = {{ param | tojson }};
+        var attr_list = param.attr_list;
+        var result = param.result;
+        console.log(attr_list);
+        console.log(result);
+        const result_table = document.getElementById("result_table");
+        const attribute_tr_node = document.getElementById("result_attribute");
+        for (var i = 0; i < attr_list.length; i = i + 1) {
+            console.log("attr:");
+            console.log(attr_list[i]);
+            const attribute_td_node = document.createElement("TD");
+            attribute_td_node.textContent = attr_list[i];
+            attribute_tr_node.appendChild(attribute_td_node);
+        }
+        console.log(typeof(result));
+        for (var i = 0; i < result.length; i = i + 1) {
+            let same = true;
+            if (i > 0) {
+                for (var j = 0; j < result[i].length; j = j + i) {
+                    if (result[i][j] != result[i - 1][j]) {
+                        same = false;
+                        break;
+                    }
+                }
+            }
+            if (same && i > 0) {
+                continue;
+            }
+            const result_tr_node = document.createElement("TR");
+            for (var j = 0; j < result[i].length; j = j + 1) {
+                const result_td_node = document.createElement("TD");
+                result_td_node.textContent = result[i][j];
+                result_tr_node.appendChild(result_td_node);
+            }
+            result_table.appendChild(result_tr_node);
+        }
+    });
+</script>
+
+</html>
