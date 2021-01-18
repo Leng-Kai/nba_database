@@ -68,3 +68,82 @@ def query_result():
     print("res:", res)
 
     return render_template('query_result.html', param={ 'attr_list': selected_attribute_list, 'result': res })
+
+@app.route('/write_done', methods=['GET', 'POST'])
+def write_done():
+    p_name = request.args.get('p_name_input')
+    t_name = request.args.get('t_name_input')
+    height = request.args.get('height_input')
+    weight = request.args.get('weight_input')
+    pos = request.args.get('pos_input')
+
+    if p_name == "":
+        return render_template('error.html', err="Player name cannot be left blank.")
+    if t_name == "":
+        return render_template('error.html', err="Team name cannot be left blank.")
+    if height == "":
+        return render_template('error.html', err="Height cannot be left blank.")
+    if weight == "":
+        return render_template('error.html', err="Weight cannot be left blank.")
+    if pos == "":
+        return render_template('error.html', err="Position cannot be left blank.")
+    
+    db = sqlite3.connect('nba_database.db')
+    cursor = db.cursor()
+
+    query = f"INSERT INTO T_PLAYER(p_name, t_name, height, weight, pos) VALUES ('{p_name}', '{t_name}', {height}, {weight}, '{pos}')"
+    print("query:", query)
+    cursor.execute(query)
+    db.commit()
+    return render_template('done.html')
+
+@app.route('/delete_done', methods=['GET', 'POST'])
+def delete_done():
+    p_name = request.args.get('p_name_input')
+
+    if p_name == "":
+        return render_template('error.html', err="Player name cannot be left blank.")
+    
+    db = sqlite3.connect('nba_database.db')
+    cursor = db.cursor()
+
+    query = f"DELETE FROM T_PLAYER WHERE p_name='{p_name}'"
+    print("query:", query)
+    cursor.execute(query)
+    db.commit()
+    return render_template('done.html')
+
+@app.route('/modify_done', methods=['GET', 'POST'])
+def modify_done():
+    p_name = request.args.get('p_name_input')
+    t_name = request.args.get('t_name_input')
+    height = request.args.get('height_input')
+    weight = request.args.get('weight_input')
+    pos = request.args.get('pos_input')
+
+    if p_name == "":
+        return render_template('error.html', err="Player name cannot be left blank.")
+
+    if t_name == "" and height == "" and weight == "" and pos == "":
+        return render_template('error.html', err="Please fill in at least one attribute.")
+
+    modify_attribute = ""
+    if t_name != "":
+        modify_attribute += f"t_name='{t_name}', "
+    if height != "":
+        modify_attribute += f"height={height}, "
+    if weight != "":
+        modify_attribute += f"weight={weight}, "
+    if pos != "":
+        modify_attribute += f"pos='{pos}', "
+
+    modify_attribute = modify_attribute[:-2]
+    
+    db = sqlite3.connect('nba_database.db')
+    cursor = db.cursor()
+
+    query = f"UPDATE T_PLAYER SET {modify_attribute} WHERE p_name='{p_name}'"
+    print("query:", query)
+    cursor.execute(query)
+    db.commit()
+    return render_template('done.html')

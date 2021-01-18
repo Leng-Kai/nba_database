@@ -8,6 +8,24 @@
 
 <body>
     <h1>Write</h1>
+    <form action="/write_done" method="get">
+        <label>Player</label>
+        <input type="text" name="p_name_input" /><br>
+
+        <label>Team</label>
+        <input type="text" name="t_name_input" /><br>
+
+        <label>Height</label>
+        <input type="text" name="height_input" /><br>
+
+        <label>Weight</label>
+        <input type="text" name="weight_input" /><br>
+
+        <label>Position</label>
+        <input type="text" name="pos_input" /><br>
+
+        <button type="submit">Write</button><br>
+    </form>
     <form action="/" method="post">
         <button type="submit">Back</button>
     </form>
