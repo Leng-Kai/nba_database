@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/antd@3.9.3/dist/antd.min.css"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://unpkg.com/antd@3.9.3/dist/antd.min.js"></script>
+    
     <title>NBA Database</title>
 </head>
 
-<body>
-    <h1>Query</h1>
-
-    <form action="/query_result" method="get">
-        <label>Player</label>
-        <input type="text" name="p_name_input" value="Stephen Curry" />
-
-        <label>Team</label>
-        <input type="text" name="t_name_input" value="GSW" /><br>
-
-        <label>Coach</label>
-        <input type="text" name="c_name_input" value="Steve Kerr" /><br>
-
-        <input type="checkbox" name="p_name" />player<br>
-        <input type="checkbox" name="t_name" />team<br>
-        <input type="checkbox" name="c_name" />coach<br>
-        <input type="checkbox" name="height" />height<br>
-        <input type="checkbox" name="weight" />weight<br>
-        <input type="checkbox" name="pos" />pos<br>
-        <input type="checkbox" name="city" />city<br>
-        <input type="checkbox" name="year" />year<br>
-        <input type="checkbox" name="win" />win<br>
-        <input type="checkbox" name="lose" />lose<br>
-
-        <button type="submit">Query</button>
-    </form>
-    <button onclick="select_all()">Select All</button>
-    <form action="/" method="post">
-        <button type="submit">Back</button>
-    </form>
-
+<body style="display: flex;background-color:#000000">
+    <script type="text/babel">
+        ReactDOM.render(
+          <div style = { {"width":"300px",margin: "0 auto"} }>
+            <div style = { {"font-size":"70px","margin":"0px 20px","color":"white"} }>Query</div>
+            <form action="/query_result" method="get">
+                <antd.Input size="large" type="text" placeholder="Enter a player name" name="p_name_input" style={ {marginTop: 20} }/>
+                <antd.Input size="large" type="text" placeholder="Enter a team name" name="t_name_input" style={ {marginTop: 3} }/>
+                <antd.Input size="large" type="text" placeholder="Enter a coach name" name="c_name_input" style={ {marginTop: 3, marginBottom: 5} }/>
+                <input type="checkbox"name="p_name" /><span style={ { color: 'white'} }> player</span> 
+                <input type="checkbox"name="t_name" /><span style={ { color: 'white'} }> team</span>
+                <input type="checkbox" name="c_name" /><span style={ { color: 'white'} }> coach</span>
+                <input type="checkbox" name="height" /><span style={ { color: 'white'} }> height</span>
+                <input type="checkbox" name="weight" /><span style={ { color: 'white'} }> weight</span>
+                <input type="checkbox" name="pos" /><span style={ { color: 'white'} }> pos</span>
+                <input type="checkbox" name="city" /><span style={ { color: 'white'} }> city</span>
+                <input type="checkbox" name="year" /><span style={ { color: 'white'} }> year</span>
+                <input type="checkbox" name="win" /><span style={ { color: 'white'} }> win</span>
+                <input type="checkbox" name="lose" /><span style={ { color: 'white'} }> lose</span>
+                <antd.Button htmlType="submit" size="large" block style={ {marginTop: 20} }>Query</antd.Button>
+            </form>
+            
+            <antd.Button onClick={select_all} htmlType="submit" size="large" block style={ {marginTop: 10} } >Select All</antd.Button>
+            <form action="/" method="post" >
+                <antd.Button type="primary" htmlType="submit" size="large" block style={ {marginTop: 30} } >Back</antd.Button>
+            </form>
+          </div>,
+          document.getElementById("app")
+          )
+    </script>
+    <div id="app" style="width: 400px;"></div>
+    <div style="float:right;">
+        <img src="./bg_img/query.jpg" width="1181" height="720" alt="Kobe">
+    </div>
+   
 </body>
 
 <script>

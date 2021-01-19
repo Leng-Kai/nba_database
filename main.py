@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -29,7 +29,6 @@ def query_result():
     p_name = request.args.get('p_name_input')
     t_name = request.args.get('t_name_input')
     c_name = request.args.get('c_name_input')
-
     name_attribute = ""
     if p_name != "":
         name_attribute += f"p_name='{p_name}' AND "

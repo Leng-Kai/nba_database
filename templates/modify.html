@@ -3,11 +3,43 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/antd@3.9.3/dist/antd.min.css"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://unpkg.com/antd@3.9.3/dist/antd.min.js"></script>
+    
     <title>NBA Database</title>
 </head>
 
-<body>
-    <h1>Modify</h1>
+<body style="display: flex;background-color:#090909">
+    <script type="text/babel">
+        ReactDOM.render(
+          <div style = { {"width":"300px",margin: "0 auto"} }>
+            <div style = { {"font-size":"70px","margin":"0px 20px","color":"white"} }>Modify</div>
+            <form action="/modify_done" method="get">
+                <antd.Input size="large" type="text" placeholder="Enter a player name" name="p_name_input" style={ {marginTop: 30} }/>
+                <antd.Input size="large" type="text" placeholder="Enter a Team" name="t_name_input" style={ {marginTop: 3} }/>
+                <antd.Input size="large" type="text" placeholder="Height (cm)" name="height_input" style={ {marginTop: 3} }/>
+                <antd.Input size="large" type="text" placeholder="Weight (lbs)" name="weight_input" style={ {marginTop: 3} }/>
+                <antd.Input size="large" type="text" placeholder="Position" name="pos_input" style={ {marginTop: 3, marginBottom: 10} }/>
+                <antd.Button htmlType="submit" size="large" block style={ {marginBottom: 50} }>Modify</antd.Button>
+            </form>
+            <form action="/" method="post" >
+                <antd.Button type="primary" htmlType="submit" size="large" block style={ {marginBottom: 30} } >Back</antd.Button>
+            </form>
+            
+          
+          </div>,
+          document.getElementById("app")
+          )
+    </script>
+    <div id="app" style="width: 400px;"></div>
+    <div style="float:right;">
+        <img src="./bg_img/modify.jpg" width="952" height="720" alt="Kobe">
+    </div>
+    <!-- <h1>Modify</h1>
     <form action="/modify_done" method="get">
         <label>Player</label>
         <input type="text" name="p_name_input" /><br>
@@ -28,7 +60,7 @@
     </form>
     <form action="/" method="post">
         <button type="submit">Back</button>
-    </form>
+    </form> -->
 
 </body>
 

@@ -5,7 +5,13 @@
     <meta charset="utf-8">
     <title>NBA Database</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="https://unpkg.com/antd@3.9.3/dist/antd.min.css"/>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://unpkg.com/antd@3.9.3/dist/antd.min.js"></script>
+    
 </head>
 
 <body>
@@ -14,9 +20,17 @@
         <tr id="result_attribute">
         </tr>
     </table>
-    <form action="/" method="post">
-        <button type="submit">Back</button>
-    </form>
+    <script type="text/babel">
+        ReactDOM.render(
+          <div>
+            <form action="/" method="post" >
+                <antd.Button type="primary" htmlType="submit" size="large" style={ {marginTop: 30} } >Back</antd.Button>
+            </form>
+          </div>,
+        document.getElementById("app")
+        )
+    </script>
+    <div id="app"></div>
 
 </body>
 
